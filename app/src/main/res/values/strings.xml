@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Tenant Finder</string>
+    <string name="todo">TODO</string>
+    <string name="email_address">Email address</string>
+    <string name="password">Password</string>
+    <string name="login_now">Login Now</string>
+    <string name="don_t_remember_password">Don\'t Remember Password?</string>
+    <string name="don_t_have_an_account_register_here">Don\'t have an account? Register Here</string>
+    <string name="sign_in_with_google">Sign in with google</string>
+    <string name="tenant_hub">Tenant Hub</string>
+    <string name="or">or</string>
 </resources>

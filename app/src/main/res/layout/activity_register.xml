@@ -41,9 +41,9 @@
         app:layout_constraintVertical_bias="0.136" />
 
     <EditText
-        android:id="@+id/username"
-        android:layout_width="346dp"
-        android:layout_height="46dp"
+        android:id="@+id/email"
+        android:layout_width="344dp"
+        android:layout_height="54dp"
         android:background="@drawable/et_bg"
         android:hint="Email address"
         android:inputType="textEmailAddress"
@@ -58,26 +58,26 @@
     <EditText
         android:id="@+id/password"
         android:layout_width="348dp"
-        android:layout_height="44dp"
+        android:layout_height="57dp"
         android:layout_marginTop="24dp"
         android:layout_marginBottom="24dp"
         android:background="@drawable/et_bg"
+        android:drawableRight="@drawable/ic_eye"
         android:hint="Password"
         android:inputType="textPassword"
         android:padding="8dp"
-        android:drawableRight="@drawable/ic_eye"
         android:textColorHint="@color/login_forms_details"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/divider2"
         app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="@id/divider"
-        app:layout_constraintTop_toBottomOf="@+id/username"
+        app:layout_constraintTop_toBottomOf="@+id/email"
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/btn_register"
-        android:layout_width="325dp"
-        android:layout_height="41dp"
+        android:layout_width="328dp"
+        android:layout_height="55dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="9dp"
         android:layout_marginEnd="8dp"
@@ -108,7 +108,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/already_registered_login"
+        android:id="@+id/textview_login"
         android:layout_width="306dp"
         android:layout_height="32dp"
         android:layout_marginTop="24dp"
