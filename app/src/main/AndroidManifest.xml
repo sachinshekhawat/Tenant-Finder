@@ -3,24 +3,32 @@
     package="com.example.tenantfinder">
 
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="Tenant Finder"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TenantFinder" >
 
+        <meta-data
+            android:name="com.google.android.gms.ads.tenantfinder"
+            android:value="ca-app-pub-2046241422238764~3503622393" />
+
+        <activity android:name=".RegisterActivity"
+                  android:exported="true"/>
         <activity
             android:name=".MainActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RegisterActivity"
-                  android:exported="true"/>
     </application>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+
+
 </manifest>

@@ -32,26 +32,27 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="189dp"
-        android:layout_height="168dp"
+        android:layout_width="379dp"
+        android:layout_height="221dp"
+        android:contentDescription="@string/todo"
         android:src="@drawable/property"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.168"
-        android:contentDescription="@string/todo"
         tools:ignore="ContentDescription" />
 
     <EditText
         android:id="@+id/username_login"
-        android:layout_width="344dp"
-        android:layout_height="60dp"
+        android:layout_width="345dp"
+        android:layout_height="65dp"
         android:layout_marginTop="24dp"
         android:layout_marginBottom="24dp"
         android:autofillHints=""
         android:background="@drawable/et_bg"
-        android:hint="@string/email_address"
+        android:drawableLeft="@drawable/ic_email"
+        android:hint="  Email"
         android:inputType="textEmailAddress"
         android:padding="8dp"
         android:textColorHint="@color/login_forms_details"
@@ -71,7 +72,8 @@
         android:autofillHints=""
         android:background="@drawable/et_bg"
         android:drawableEnd="@drawable/ic_eye"
-        android:hint="@string/password"
+        android:drawableStart="@drawable/ic_password"
+        android:hint="  Password"
         android:inputType="textPassword"
         android:padding="8dp"
         android:textColorHint="@color/login_forms_details"
@@ -137,19 +139,6 @@
         app:layout_constraintTop_toBottomOf="@id/footer_line" />
 
     <TextView
-        android:id="@+id/sign_in_google"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
-        android:padding="8dp"
-        android:text="@string/sign_in_with_google"
-        android:textColor="@color/login_forms_details"
-        app:layout_constraintBottom_toTopOf="@id/footer_line"
-        app:layout_constraintEnd_toStartOf="@id/divider2"
-        app:layout_constraintStart_toStartOf="@id/divider"
-        app:drawableEndCompat="@drawable/ic_save" />
-
-    <TextView
         android:id="@+id/header_title"
         android:layout_width="156dp"
         android:layout_height="41dp"
@@ -167,12 +156,12 @@
         android:id="@+id/line1"
         android:layout_width="120dp"
         android:layout_height="1dp"
+        android:layout_marginTop="20dp"
         android:background="@color/login_forms_details_medium"
-        app:layout_constraintStart_toStartOf="@id/divider"
-        app:layout_constraintTop_toBottomOf="@id/forgot_password"
-        app:layout_constraintBottom_toTopOf="@id/sign_in_google"
+        app:layout_constraintEnd_toStartOf="@+id/or"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
-        app:layout_constraintEnd_toStartOf="@+id/or"/>
+        app:layout_constraintStart_toStartOf="@id/divider"
+        app:layout_constraintTop_toBottomOf="@id/forgot_password" />
 
     <TextView
         android:id="@+id/or"
@@ -194,9 +183,8 @@
         app:layout_constraintBottom_toBottomOf="@id/or"
         app:layout_constraintEnd_toEndOf="@id/divider2"
         app:layout_constraintStart_toEndOf="@id/or"
-        app:layout_constraintTop_toTopOf="@id/or" />
-
-
+        app:layout_constraintTop_toTopOf="@id/or"
+        app:layout_constraintVertical_bias="1.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

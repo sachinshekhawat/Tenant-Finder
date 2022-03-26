@@ -31,21 +31,23 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="189dp"
-        android:layout_height="168dp"
+        android:layout_width="378dp"
+        android:layout_height="257dp"
         android:src="@drawable/property"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.512"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.136" />
+        app:layout_constraintVertical_bias="0.135" />
 
     <EditText
         android:id="@+id/email"
-        android:layout_width="344dp"
-        android:layout_height="54dp"
+        android:layout_width="349dp"
+        android:layout_height="63dp"
         android:background="@drawable/et_bg"
-        android:hint="Email address"
+        android:drawableLeft="@drawable/ic_email"
+        android:hint="  Email"
         android:inputType="textEmailAddress"
         android:padding="8dp"
         android:textColorHint="@color/login_forms_details"
@@ -63,7 +65,8 @@
         android:layout_marginBottom="24dp"
         android:background="@drawable/et_bg"
         android:drawableRight="@drawable/ic_eye"
-        android:hint="Password"
+        android:drawableLeft="@drawable/ic_password"
+        android:hint="  Password"
         android:inputType="textPassword"
         android:padding="8dp"
         android:textColorHint="@color/login_forms_details"
@@ -112,7 +115,7 @@
         android:layout_width="306dp"
         android:layout_height="32dp"
         android:layout_marginTop="24dp"
-        android:text="If already registered. Login Here"
+        android:text="If already registered !. Login Here"
         android:textColor="@color/login_forms_details"
         android:textSize="18dp"
         app:layout_constraintEnd_toEndOf="parent"
