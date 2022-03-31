@@ -1,5 +1,6 @@
 package com.example.tenantfinder;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -85,12 +86,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
-
+        //
         findViewById(R.id.textviewsignup).setOnClickListener(this);
         findViewById(R.id.btn_login).setOnClickListener(this);
     }
+
         private void userLogin () {
 
+            // null refereknce here
             String email = etEmail.getText().toString().trim();
             String password = etPassword.getText().toString().trim();
 

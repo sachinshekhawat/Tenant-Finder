@@ -19,7 +19,6 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -42,7 +41,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     TextView textView;
     ImageView imageView;
-    EditText editText;
+    EditText etdisplayName , etphoneNo , etAddress;
     Uri uriProfileImage;
     ProgressBar progressBar;
     String profileImageUrl;
@@ -56,13 +55,12 @@ public class ProfileActivity extends AppCompatActivity {
 
 
         mAuth = FirebaseAuth.getInstance();
-
-        Toolbar toolbar = findViewById(R.id.toolbar);
-
-        editText =  (EditText) findViewById(R.id.editTextTextPersonName);
+        etdisplayName =  (EditText) findViewById(R.id.displayName);
+        etphoneNo =  (EditText) findViewById(R.id.phoneNo);
         imageView = (ImageView) findViewById(R.id.imageView3);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         textView = (TextView) findViewById(R.id.textViewVerified);
+//        etAddress = (EditText)findViewById(R.id.editTextAddress);
 
         loadUserInformation();
 
@@ -90,7 +88,6 @@ public class ProfileActivity extends AppCompatActivity {
         }
     }
 
-    @SuppressLint("SetTextI18n")
     private void loadUserInformation() {
        final FirebaseUser user = mAuth.getCurrentUser();
         if (user != null){
@@ -101,8 +98,16 @@ public class ProfileActivity extends AppCompatActivity {
         }
 
         if(user.getDisplayName() != null) {
-            editText.setText(user.getDisplayName());
+            etdisplayName.setText(user.getDisplayName());
         }
+
+        if(user.getPhoneNumber() != null) {
+            etphoneNo.setText(user.getPhoneNumber());
+        }
+//        if(user.getProviderData() != null) {
+//            etAddress.setText((CharSequence) user.getProviderData());
+//        }
+
 
         if(user.isEmailVerified()){
             textView.setText("Email Verified");
@@ -128,13 +133,25 @@ public class ProfileActivity extends AppCompatActivity {
 
 
     private void saveUserInformation() {
-        String displayName = editText.getText().toString();
+        String displayName = etdisplayName.getText().toString();
+        String phoneNumber = etphoneNo.getText().toString();
+//        String address = etAddress.getText().toString();
 
         if(displayName.isEmpty()){
-            editText.setError("Name required");
-            editText.requestFocus();
+            etdisplayName.setError("Name required");
+            etdisplayName.requestFocus();
             return;
         }
+        if(phoneNumber.isEmpty()){
+            etphoneNo.setError("Phone number required");
+            etphoneNo.requestFocus();
+            return;
+        } 
+//        if(address.isEmpty()){
+//            etAddress.setError("Phone number required");
+//            etAddress.requestFocus();
+//            return;
+//        }
 
         FirebaseUser user = mAuth.getCurrentUser();
 

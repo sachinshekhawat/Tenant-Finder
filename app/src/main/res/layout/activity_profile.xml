@@ -6,19 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
-    <Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/et_bg"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.625" />
-
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="155dp"
@@ -33,9 +20,9 @@
         app:srcCompat="@android:drawable/ic_menu_camera" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
-        android:layout_width="364dp"
-        android:layout_height="62dp"
+        android:id="@+id/displayName"
+        android:layout_width="336dp"
+        android:layout_height="57dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Display Name"
@@ -43,10 +30,42 @@
         android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintHorizontal_bias="0.346"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView3"
-        app:layout_constraintVertical_bias="0.081" />
+        app:layout_constraintVertical_bias="0.075" />
+
+    <EditText
+        android:id="@+id/editTextAddress"
+        android:layout_width="336dp"
+        android:layout_height="57dp"
+        android:ems="10"
+        android:inputType="textPostalAddress"
+        android:text="Address"
+        android:textColor="@color/login_forms_details"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.346"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3"
+        app:layout_constraintVertical_bias="0.3" />
+
+    <EditText
+        android:id="@+id/phoneNo"
+        android:layout_width="336dp"
+        android:layout_height="57dp"
+        android:ems="10"
+        android:inputType="number"
+        android:text="Phone No."
+        android:textColor="@color/login_forms_details"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.346"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3"
+        app:layout_constraintVertical_bias="0.188" />
 
     <TextView
         android:id="@+id/textViewVerified"
@@ -56,10 +75,10 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintBottom_toTopOf="@+id/buttonsave"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.086"
+        app:layout_constraintHorizontal_bias="0.077"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
-        app:layout_constraintVertical_bias="0.428" />
+        app:layout_constraintTop_toBottomOf="@+id/displayName"
+        app:layout_constraintVertical_bias="0.872" />
 
     <Button
         android:id="@+id/buttonsave"
@@ -70,10 +89,10 @@
         android:textColor="@color/yellow"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.461"
+        app:layout_constraintHorizontal_bias="0.376"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/editTextTextPersonName"
-        app:layout_constraintVertical_bias="0.02" />
+        app:layout_constraintTop_toTopOf="@+id/displayName"
+        app:layout_constraintVertical_bias="0.404" />
 
     <ProgressBar
         android:id="@+id/progressBar"
