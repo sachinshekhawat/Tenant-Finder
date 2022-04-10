@@ -4,9 +4,11 @@ import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,13 +22,20 @@ import com.google.firebase.auth.FirebaseAuth;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+
 
     TextView textViewforgot;
     EditText etEmail, etPassword;
     ProgressBar progressBar;
     FirebaseAuth mAuth;
+
 
 
     @Override
@@ -35,10 +44,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
 
-
-
-        etEmail = findViewById(R.id.email);
-        etPassword = findViewById(R.id.password);
+        etEmail = findViewById(R.id.username_login);
+        etPassword = findViewById(R.id.password_login);
         progressBar = findViewById(R.id.progressbar);
         textViewforgot = findViewById(R.id.forgot_password);
 
@@ -89,12 +96,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //
         findViewById(R.id.textviewsignup).setOnClickListener(this);
         findViewById(R.id.btn_login).setOnClickListener(this);
+
+
+
     }
+     private void userLogin () {
 
-        private void userLogin () {
-
-            // null refereknce here
-            String email = etEmail.getText().toString().trim();
+            // null reference here
+            String email = etEmail.getText().toString();
             String password = etPassword.getText().toString().trim();
 
             if (email.isEmpty()) {

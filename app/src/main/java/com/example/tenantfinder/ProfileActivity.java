@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -14,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -47,20 +47,35 @@ public class ProfileActivity extends AppCompatActivity {
     String profileImageUrl;
 
     FirebaseAuth mAuth;
+    Button viewp,addp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+        viewp=findViewById(R.id.viewp);
+        addp=findViewById(R.id.addp);
+        addp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ProfileActivity.this,property_details.class));
+            }
+        });
+        viewp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ProfileActivity.this,MainActivity2.class));
+            }
+        });
+
 
 
         mAuth = FirebaseAuth.getInstance();
         etdisplayName =  (EditText) findViewById(R.id.displayName);
         etphoneNo =  (EditText) findViewById(R.id.phoneNo);
-        imageView = (ImageView) findViewById(R.id.imageView3);
+        imageView = (ImageView) findViewById(R.id.imageViewp);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         textView = (TextView) findViewById(R.id.textViewVerified);
-//        etAddress = (EditText)findViewById(R.id.editTextAddress);
 
         loadUserInformation();
 
@@ -104,9 +119,6 @@ public class ProfileActivity extends AppCompatActivity {
         if(user.getPhoneNumber() != null) {
             etphoneNo.setText(user.getPhoneNumber());
         }
-//        if(user.getProviderData() != null) {
-//            etAddress.setText((CharSequence) user.getProviderData());
-//        }
 
 
         if(user.isEmailVerified()){
@@ -135,7 +147,6 @@ public class ProfileActivity extends AppCompatActivity {
     private void saveUserInformation() {
         String displayName = etdisplayName.getText().toString();
         String phoneNumber = etphoneNo.getText().toString();
-//        String address = etAddress.getText().toString();
 
         if(displayName.isEmpty()){
             etdisplayName.setError("Name required");
@@ -147,11 +158,7 @@ public class ProfileActivity extends AppCompatActivity {
             etphoneNo.requestFocus();
             return;
         } 
-//        if(address.isEmpty()){
-//            etAddress.setError("Phone number required");
-//            etAddress.requestFocus();
-//            return;
-//        }
+
 
         FirebaseUser user = mAuth.getCurrentUser();
 
@@ -227,7 +234,7 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+    public boolean onOptionsItemSelected( MenuItem item) {
 
         switch (item.getItemId()){
             case  R.id.menuLogout:
