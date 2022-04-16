@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/login_page"
     android:orientation="vertical">
 
@@ -19,7 +20,8 @@
                 android:id="@+id/imageView"
                 android:layout_width="120dp"
                 android:layout_height="90dp"
-                android:padding="4dp" />
+                android:padding="4dp"
+                app:srcCompat="@android:drawable/ic_menu_camera" />
 
             <TextView
                 android:id="@+id/textViewTitle"
@@ -49,9 +51,9 @@
                 android:layout_below="@id/textViewShortDesc"
                 android:layout_marginLeft="9dp"
                 android:layout_marginTop="10dp"
-                android:hint="Rating"
                 android:layout_toRightOf="@id/imageView"
                 android:background="@color/cardview_light_background"
+                android:hint="Rating"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Small.Inverse" />

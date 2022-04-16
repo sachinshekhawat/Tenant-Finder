@@ -12,4 +12,7 @@
     <color name="login_forms_details_light">#1affffff</color>
     <color name="login_forms_details">#ccffffff</color>
     <color name="login_forms_details_medium">#66ffffff</color>
+    <color name="sky">#03A9F4</color>
+    <color name="orange">#FF9800</color>
+    <color name="grey">#C1B5A4</color>
 </resources>

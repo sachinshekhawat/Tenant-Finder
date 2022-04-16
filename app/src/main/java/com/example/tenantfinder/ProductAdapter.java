@@ -7,17 +7,19 @@ package com.example.tenantfinder;
 */
 
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +42,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         return new ProductViewHolder(view);
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     @Override
     public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
 
@@ -50,7 +53,10 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         holder.textViewRating.setText(String.valueOf(product.getRating()));
         holder.textViewPrice.setText(String.valueOf(product.getPrice()));
 
-//        holder.imageView.setImageDrawable(mCtx.getResources().getDrawable(product.getImage(),null));
+        Picasso.get()
+                .load(product.getCoverPhoto())
+                .placeholder(R.drawable.image_gallery)
+                .into(holder.coverPhoto);
 
 
     }
@@ -62,14 +68,15 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
     public  static  class ProductViewHolder extends RecyclerView.ViewHolder{
 
-//        ImageView imageView;
-        EditText textViewTitle,textViewDesc,textViewPrice;
-        EditText    textViewRating;
+        ImageView coverPhoto;
+        TextView textViewTitle,textViewDesc,textViewPrice;
+         EditText textViewRating;
 
         public ProductViewHolder(@NonNull View itemView) {
             super(itemView);
 
-//
+
+            coverPhoto=itemView.findViewById(R.id.imageView);
             textViewTitle = itemView.findViewById(R.id.textViewTitle);
             textViewDesc = itemView.findViewById(R.id.textViewShortDesc);
             textViewPrice = itemView.findViewById(R.id.textViewPrice);

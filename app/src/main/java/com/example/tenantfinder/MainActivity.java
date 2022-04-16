@@ -138,7 +138,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     progressBar.setVisibility(View.GONE);
                     if (task.isSuccessful()) {
                         finish();
-                        Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+                        Intent intent = new Intent(MainActivity.this, MainActivity3.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
 
@@ -155,7 +155,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             super.onStart();
             if (mAuth.getCurrentUser() != null) {
                 finish();
-                startActivity(new Intent(this, ProfileActivity.class));
+                startActivity(new Intent(this, MainActivity3.class));
             }
         }
 

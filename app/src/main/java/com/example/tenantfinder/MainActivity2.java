@@ -5,8 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 
 import com.google.firebase.database.DataSnapshot;
@@ -33,8 +35,9 @@ public class MainActivity2 extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-         startActivity(new Intent(MainActivity2.this,property_details.class));
+         startActivity(new Intent(MainActivity2.this,MainActivity3.class));
     }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,14 +46,17 @@ public class MainActivity2 extends AppCompatActivity {
        recyclerView=findViewById(R.id.recyclerView);
        productList= new ArrayList<>();
        adapter=new ProductAdapter(this, productList);
-       databaseReference= FirebaseDatabase.getInstance().getReference("property_details");
+       databaseReference= FirebaseDatabase.getInstance().getReference("Property Available");
        recyclerView.setAdapter(adapter);
+       recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
        databaseReference.addValueEventListener(new ValueEventListener() {
+           @SuppressLint("NotifyDataSetChanged")
            @Override
            public void onDataChange(@NonNull DataSnapshot snapshot) {
                for(DataSnapshot dataSnapshot: snapshot.getChildren()){
                    Product product=dataSnapshot.getValue(Product.class);
+                   assert product != null;
                    productList.add(product);
                }
                adapter.notifyDataSetChanged();
@@ -59,7 +65,7 @@ public class MainActivity2 extends AppCompatActivity {
 
            @Override
            public void onCancelled(@NonNull DatabaseError error) {
-
+               Log.d("HHHHHH",error.getMessage());
            }
        });
 

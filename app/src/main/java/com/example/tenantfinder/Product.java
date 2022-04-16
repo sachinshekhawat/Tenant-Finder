@@ -9,21 +9,30 @@ public class Product {
     /*private int id;*/
     private String title="", shortdesc="",price="",rating="";
 
-//    private int image;
+    public void setCoverPhoto(String coverPhoto) {
+        this.coverPhoto = coverPhoto;
+    }
+
+    private String coverPhoto;
+
+
+
+
+
+
     public Product(){};
 
-    public Product( String title, String shortdesc, String rating, String price){
-//        this.id = id;
+    public Product( String title, String shortdesc, String rating, String price,String coverPhoto){
+
         this.title = title;
         this.shortdesc = shortdesc;
         this.rating = rating ;
-        this.price = price;
-//        this.image = image;
+        this.price = price;;
+        setCoverPhoto(coverPhoto);
     }
 
-//    public int getId() {
-//        return id;
-//    }
+
+
 
     public String getTitle() {
         return title;
@@ -41,7 +50,8 @@ public class Product {
         return price;
     }
 
-    /*public int getImage() {
-        return image;
-    }*/
+
+    public String getCoverPhoto() {
+        return coverPhoto;
+    }
 }

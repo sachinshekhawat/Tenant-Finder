@@ -1,26 +1,62 @@
 package com.example.tenantfinder;
 
+import static java.security.AccessController.getContext;
+
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Objects;
+
 
 public class property_details extends AppCompatActivity {
 
 
-    EditText etemailp,etnamep,etratep,etaddressp;
+
+    EditText etpricep,etprop,etratep,etaddressp;
     Button submitp,previewp;
+    ImageView imageviewp;
     DatabaseReference databaseUsers;
+    ProgressBar progressBar;
+    FirebaseAuth mAuth;
+    FirebaseStorage storage;
+    Uri uri;
+
+
+    FirebaseDatabase database;
 
 
 
@@ -28,13 +64,39 @@ public class property_details extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_property_details);
-        etemailp=findViewById(R.id.etpricep);
-        etnamep=findViewById(R.id.etnamep);
+        etpricep=findViewById(R.id.etpricep);
+        etprop=findViewById(R.id.etprop);
         etratep=findViewById(R.id.etratep);
         etaddressp=findViewById(R.id.etaddressp);
+        progressBar=findViewById(R.id.progressBar2);
         submitp=findViewById(R.id.submitp);
         previewp=findViewById(R.id.previewp);
+        imageviewp=findViewById(R.id.imageViewp);
+
+
         databaseUsers=FirebaseDatabase.getInstance().getReference();
+        mAuth = FirebaseAuth.getInstance();
+        storage = FirebaseStorage.getInstance();
+        database= FirebaseDatabase.getInstance();
+
+        database.getReference().child("Property Available").child(Objects.requireNonNull(mAuth.getUid())).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                Product product = snapshot.getValue(Product.class);
+                    assert product != null;
+                    Picasso.get()
+                            .load(product.getCoverPhoto())
+                            .placeholder(R.drawable.image_gallery)
+                            .into(imageviewp);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         previewp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,6 +106,15 @@ public class property_details extends AppCompatActivity {
             }
         });
 
+        imageviewp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                intent.setType("image/*");
+                startActivityForResult(intent,11);
+            }
+        });
 
 
         submitp.setOnClickListener(new View.OnClickListener() {
@@ -51,20 +122,78 @@ public class property_details extends AppCompatActivity {
             public void onClick(View view) {
                 addprop();
             }
+        });
 
-
+        findViewById(R.id.back_property).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(property_details.this,MainActivity3.class));
+            }
         });
 
 
+
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(data.getData()!=null){
+            uri = data.getData();
+            imageviewp.setImageURI(uri);
+
+            final StorageReference reference = storage.getReference().child("cover_photo")
+                    .child(Objects.requireNonNull(FirebaseAuth.getInstance().getUid()));
+            reference.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    Toast.makeText(property_details.this, "Image Saved Successfully", Toast.LENGTH_SHORT).show();
+                    reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            database.getReference().child("Property Available").child(Objects.requireNonNull(mAuth.getUid())).child("coverPhoto").setValue(uri.toString());
+                        }
+                    });
+                }
+            });
+        }
+
+    }
+
     private void addprop() {
-        String  name= etnamep.getText().toString();
+        String  name= etprop.getText().toString();
         String  adrs= etaddressp.getText().toString();
         String  rating= etratep.getText().toString();
-        String  email= etemailp.getText().toString();
+        String  price= etpricep.getText().toString();
         String id =databaseUsers.push().getKey();
 
-        Product product=new Product(name,adrs,rating,email);
+        if(name.isEmpty()){
+            etprop.setError("Property Details required");
+            etprop.requestFocus();
+            return;}
+
+        if(adrs.isEmpty()){
+            etaddressp.setError("Address required");
+            etaddressp.requestFocus();
+            return;}
+
+        if(rating.isEmpty()){
+            etratep.setError("Rating necessary");
+            etratep.requestFocus();
+            return;}
+
+        if(price.isEmpty()){
+            etpricep.setError(" Price required");
+            etpricep.requestFocus();
+            return;}
+
+
+
+
+
+
+        Product product=new Product(name,adrs,rating,price,uri.toString());
+
         databaseUsers.child("Property Available").child(id).setValue(product).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
@@ -76,7 +205,6 @@ public class property_details extends AppCompatActivity {
 
 
     }
-
 
 
 }

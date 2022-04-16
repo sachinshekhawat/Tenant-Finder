@@ -9,11 +9,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -37,45 +33,35 @@ import java.io.IOException;
 public class ProfileActivity extends AppCompatActivity {
 
 
+
     private static final int CHOOSE_IMAGE = 101;
 
     TextView textView;
     ImageView imageView;
-    EditText etdisplayName , etphoneNo , etAddress;
+    EditText etdisplayName;
+    EditText etemail;
     Uri uriProfileImage;
     ProgressBar progressBar;
     String profileImageUrl;
 
     FirebaseAuth mAuth;
-    Button viewp,addp;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-        viewp=findViewById(R.id.viewp);
-        addp=findViewById(R.id.addp);
-        addp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(ProfileActivity.this,property_details.class));
-            }
-        });
-        viewp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(ProfileActivity.this,MainActivity2.class));
-            }
-        });
 
 
 
         mAuth = FirebaseAuth.getInstance();
-        etdisplayName =  (EditText) findViewById(R.id.displayName);
-        etphoneNo =  (EditText) findViewById(R.id.phoneNo);
-        imageView = (ImageView) findViewById(R.id.imageViewp);
-        progressBar = (ProgressBar) findViewById(R.id.progressBar);
-        textView = (TextView) findViewById(R.id.textViewVerified);
+        etdisplayName = findViewById(R.id.displayName);
+        etemail = findViewById(R.id.email_profile);
+        imageView = findViewById(R.id.imageView3);
+        progressBar = findViewById(R.id.progressBar);
+        textView = findViewById(R.id.textViewVerified);
+
 
         loadUserInformation();
 
@@ -86,13 +72,23 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.buttonsave).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.button_save).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 saveUserInformation();
             }
         });
+
+        findViewById(R.id.back_profile).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ProfileActivity.this,MainActivity3.class));
+            }
+        });
+
     }
+
+
 
     @Override
     protected void onStart(){
@@ -116,8 +112,8 @@ public class ProfileActivity extends AppCompatActivity {
             etdisplayName.setText(user.getDisplayName());
         }
 
-        if(user.getPhoneNumber() != null) {
-            etphoneNo.setText(user.getPhoneNumber());
+        if(user.getEmail() != null) {
+            etemail.setText(user.getEmail());
         }
 
 
@@ -146,16 +142,16 @@ public class ProfileActivity extends AppCompatActivity {
 
     private void saveUserInformation() {
         String displayName = etdisplayName.getText().toString();
-        String phoneNumber = etphoneNo.getText().toString();
+        String email = etemail.getText().toString();
 
         if(displayName.isEmpty()){
             etdisplayName.setError("Name required");
             etdisplayName.requestFocus();
             return;
         }
-        if(phoneNumber.isEmpty()){
-            etphoneNo.setError("Phone number required");
-            etphoneNo.requestFocus();
+        if(displayName.isEmpty()){
+            etemail.setError("Email required");
+            etemail.requestFocus();
             return;
         } 
 
@@ -165,8 +161,11 @@ public class ProfileActivity extends AppCompatActivity {
         if(user != null){
             UserProfileChangeRequest profile = new UserProfileChangeRequest.Builder()
                     .setDisplayName(displayName)
-                    .setPhotoUri(Uri.parse(profileImageUrl))
+                    .setPhotoUri(Uri.parse(imageView.toString()))
                     .build();
+
+
+
 
             user.updateProfile(profile)
                     .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -179,6 +178,8 @@ public class ProfileActivity extends AppCompatActivity {
                     });
         }
     }
+
+
 
 
     @Override
@@ -217,35 +218,14 @@ public class ProfileActivity extends AppCompatActivity {
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             progressBar.setVisibility(View.GONE);
-                            Toast.makeText(ProfileActivity.this,e.getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ProfileActivity.this,e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
                         }
                     });
         }
     }
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
 
-        MenuInflater inflator = getMenuInflater();
-        inflator.inflate(R.menu.menu,menu);
-
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected( MenuItem item) {
-
-        switch (item.getItemId()){
-            case  R.id.menuLogout:
-
-                FirebaseAuth.getInstance().signOut();
-                finish();
-                startActivity(new Intent(this,MainActivity.class));
-                break;
-        }
-        return true;
-    }
 
     private void showImageChooser(){
         Intent intent = new Intent();
@@ -253,4 +233,12 @@ public class ProfileActivity extends AppCompatActivity {
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(Intent.createChooser(intent, "Select Profile Image"),CHOOSE_IMAGE);
     }
+
+    public void logout(View view) {
+        mAuth.signOut();
+        finish();
+        startActivity(new Intent(this,MainActivity.class));
+    }
+
+
 }

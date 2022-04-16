@@ -11,10 +11,12 @@
         android:id="@+id/etpricep"
         android:layout_width="309dp"
         android:layout_height="44dp"
+        android:layout_marginLeft="15dp"
         android:layout_marginTop="292dp"
+        android:layout_marginRight="15dp"
         android:ems="10"
         android:hint="price"
-        android:inputType="textEmailAddress"
+        android:inputType="numberDecimal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.519"
@@ -24,91 +26,139 @@
 
     <EditText
         android:id="@+id/etratep"
-        android:layout_width="313dp"
-        android:layout_height="40dp"
+        android:layout_width="311dp"
+        android:layout_height="43dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:hint="Rating"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:inputType="numberDecimal"
+        app:layout_constraintBottom_toBottomOf="@+id/etpricep"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.54"
+        app:layout_constraintHorizontal_bias="0.53"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.552" />
+        app:layout_constraintTop_toTopOf="@+id/etaddressp"
+        app:layout_constraintVertical_bias="0.549" />
 
     <EditText
         android:id="@+id/etaddressp"
-        android:layout_width="302dp"
-        android:layout_height="39dp"
+        android:layout_width="304dp"
+        android:layout_height="43dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:ems="10"
         android:hint="Address/short desc"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:inputType="textPostalAddress"
+        app:layout_constraintBottom_toBottomOf="@id/etratep"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.486"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/etprop"
         app:layout_constraintVertical_bias="0.479" />
 
     <TextView
         android:id="@+id/pdetails"
-        android:layout_width="137dp"
-        android:layout_height="33dp"
-        android:text="PROPERTY DETAILS"
+        android:layout_width="215dp"
+        android:layout_height="42dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:text="ADD PROPERTY DETAILS"
+        android:textSize="18dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.601"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.056" />
+        app:layout_constraintVertical_bias="0.047" />
 
-    <ImageView
-        android:id="@+id/imageViewp"
-        android:layout_width="155dp"
-        android:layout_height="94dp"
-        android:background="@drawable/et_bg"
+
+    <ProgressBar
+        android:id="@+id/progressBar2"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.535"
+        app:layout_constraintHorizontal_bias="0.457"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.182"
-        app:srcCompat="@android:drawable/ic_menu_camera" />
+        app:layout_constraintVertical_bias="0.149" />
 
     <EditText
-        android:id="@+id/etnamep"
+        android:id="@+id/etprop"
         android:layout_width="305dp"
         android:layout_height="44dp"
-        android:layout_marginTop="68dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="120dp"
         android:ems="10"
         android:hint="Property Details"
-        android:inputType="textPersonName"
+        android:inputType="text"
+        app:layout_constraintBottom_toTopOf="@+id/etpricep"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.406"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewp" />
+        app:layout_constraintTop_toBottomOf="@+id/imageViewp"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/submitp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="228dp"
         android:background="@color/login_forms_details_light"
         android:text="submit"
+        android:textColor="@color/yellow"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etpricep"
-        app:layout_constraintVertical_bias="0.457" />
+        app:layout_constraintVertical_bias="0.133" />
 
     <Button
         android:id="@+id/previewp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="92dp"
-        android:background="@color/login_forms_details_light"
-        android:text="view"
+        android:layout_width="165dp"
+        android:layout_height="51dp"
+        android:text="view property"
+        android:textColor="@color/yellow"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.991"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etpricep"
-        app:layout_constraintVertical_bias="0.457" />
+        app:layout_constraintVertical_bias="0.942" />
+
+    <Button
+        android:id="@+id/back_property"
+        android:layout_width="112dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="4dp"
+        android:background="@color/login_forms_details_light"
+        android:drawableLeft="@drawable/ic_baseline_arrow_back_24"
+        android:text="BACK"
+        android:textColor="@color/yellow"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/previewp"
+        app:layout_constraintHorizontal_bias="0.063"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/submitp"
+        app:layout_constraintVertical_bias="0.94" />
+
+    <ImageView
+        android:id="@+id/imageViewp"
+        android:layout_width="278dp"
+        android:layout_height="149dp"
+        android:layout_marginBottom="184dp"
+        app:layout_constraintBottom_toTopOf="@+id/etpricep"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/image_gallery" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
