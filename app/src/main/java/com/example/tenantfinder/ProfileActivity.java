@@ -27,12 +27,13 @@ import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class ProfileActivity extends AppCompatActivity {
-
-
 
     private static final int CHOOSE_IMAGE = 101;
 
@@ -45,6 +46,7 @@ public class ProfileActivity extends AppCompatActivity {
     String profileImageUrl;
 
     FirebaseAuth mAuth;
+    FirebaseStorage storage;
 
 
 
@@ -68,7 +70,10 @@ public class ProfileActivity extends AppCompatActivity {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showImageChooser();
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                intent.setType("image/*");
+                startActivityForResult(intent,11);
             }
         });
 
@@ -90,6 +95,7 @@ public class ProfileActivity extends AppCompatActivity {
 
 
 
+
     @Override
     protected void onStart(){
         super.onStart();
@@ -103,7 +109,7 @@ public class ProfileActivity extends AppCompatActivity {
        final FirebaseUser user = mAuth.getCurrentUser();
         if (user != null){
         if(user.getPhotoUrl() != null){
-            Glide.with(this)
+           Picasso.get()
                     .load(user.getPhotoUrl().toString())
                     .into(imageView);
         }
@@ -189,6 +195,7 @@ public class ProfileActivity extends AppCompatActivity {
         if(requestCode == CHOOSE_IMAGE && resultCode == RESULT_OK && data != null && data.getData() != null){
 
             uriProfileImage = data.getData();
+            imageView.setImageURI(uriProfileImage);
 
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uriProfileImage);
@@ -222,16 +229,6 @@ public class ProfileActivity extends AppCompatActivity {
                         }
                     });
         }
-    }
-
-
-
-
-    private void showImageChooser(){
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent, "Select Profile Image"),CHOOSE_IMAGE);
     }
 
     public void logout(View view) {

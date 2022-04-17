@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/login_page"
-    tools:context=".property_details">
+    tools:context=".PropertyActivity">
 
     <EditText
         android:id="@+id/etpricep"
@@ -16,7 +16,7 @@
         android:layout_marginRight="15dp"
         android:ems="10"
         android:hint="price"
-        android:inputType="numberDecimal"
+        android:inputType="text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.519"
@@ -34,7 +34,7 @@
         android:inputType="numberDecimal"
         app:layout_constraintBottom_toBottomOf="@+id/etpricep"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.53"
+        app:layout_constraintHorizontal_bias="0.52"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/etaddressp"
         app:layout_constraintVertical_bias="0.549" />
@@ -50,19 +50,21 @@
         android:inputType="textPostalAddress"
         app:layout_constraintBottom_toBottomOf="@id/etratep"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.486"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/etprop"
         app:layout_constraintVertical_bias="0.479" />
 
     <TextView
         android:id="@+id/pdetails"
-        android:layout_width="215dp"
-        android:layout_height="42dp"
+        android:layout_width="match_parent"
+        android:textAlignment="center"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:text="ADD PROPERTY DETAILS"
-        android:textSize="18dp"
+        android:textSize="24dp"
+        android:textColor="@color/black"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -118,8 +120,8 @@
 
     <Button
         android:id="@+id/previewp"
-        android:layout_width="165dp"
-        android:layout_height="51dp"
+        android:layout_width="158dp"
+        android:layout_height="56dp"
         android:text="view property"
         android:textColor="@color/yellow"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -131,8 +133,8 @@
 
     <Button
         android:id="@+id/back_property"
-        android:layout_width="112dp"
-        android:layout_height="43dp"
+        android:layout_width="106dp"
+        android:layout_height="44dp"
         android:layout_marginStart="8dp"
         android:layout_marginBottom="4dp"
         android:background="@color/login_forms_details_light"
@@ -142,15 +144,15 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/previewp"
-        app:layout_constraintHorizontal_bias="0.063"
+        app:layout_constraintHorizontal_bias="0.061"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/submitp"
-        app:layout_constraintVertical_bias="0.94" />
+        app:layout_constraintVertical_bias="0.911" />
 
     <ImageView
         android:id="@+id/imageViewp"
-        android:layout_width="278dp"
-        android:layout_height="149dp"
+        android:layout_width="208dp"
+        android:layout_height="148dp"
         android:layout_marginBottom="184dp"
         app:layout_constraintBottom_toTopOf="@+id/etpricep"
         app:layout_constraintEnd_toEndOf="parent"

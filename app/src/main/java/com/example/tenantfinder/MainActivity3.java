@@ -7,8 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
 public class MainActivity3 extends AppCompatActivity {
 
     Button viewp,addp,profile;
@@ -32,7 +30,7 @@ public class MainActivity3 extends AppCompatActivity {
         addp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity3.this,property_details.class));
+                startActivity(new Intent(MainActivity3.this, PropertyActivity.class));
             }
         });
         viewp.setOnClickListener(new View.OnClickListener() {

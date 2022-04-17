@@ -36,51 +36,44 @@
 
     <Button
         android:id="@+id/addp"
-        android:layout_width="148dp"
-        android:layout_height="52dp"
-        android:layout_marginLeft="5dp"
+        android:layout_width="133dp"
+        android:layout_height="54dp"
         android:background="@color/login_forms_details_light"
-        android:drawableLeft="@drawable/ic_baseline_add_card_24"
-        android:text="add property"
-        android:textColor="@color/yellow"
-        android:textSize="13dp"
-        android:textStyle="bold"
+        android:drawableTop="@drawable/ic_baseline_add_circle_outline_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/profile"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/viewp"
+        app:layout_constraintTop_toBottomOf="@+id/textView5"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/viewp"
-        android:layout_width="139dp"
-        android:layout_height="52dp"
-        android:layout_marginRight="5dp"
+        android:layout_width="133dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="5dp"
         android:background="@color/login_forms_details_light"
-        android:drawableLeft="@drawable/ic_baseline_remove_red_eye_24"
-        android:text="view properties"
+        android:drawableTop="@drawable/ic_baseline_grid_view_24"
         android:textColor="@color/yellow"
-        android:textSize="10dp"
-        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/addp"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/profile" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/profile"
-        android:layout_width="103dp"
-        android:layout_height="52dp"
+        android:layout_width="133dp"
+        android:layout_height="54dp"
+        android:layout_marginEnd="5dp"
         android:background="@color/login_forms_details_light"
-        android:drawableLeft="@drawable/ic_baseline_cottage_24"
-        android:text="PROFILE"
-        android:textColor="@color/yellow"
-        android:textSize="12dp"
-        android:textStyle="bold"
+        android:drawableTop="@drawable/ic_baseline_account_circle_24"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/viewp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/addp"
-        app:layout_constraintTop_toBottomOf="@+id/imageView9"
+        app:layout_constraintTop_toBottomOf="@+id/forward_btn"
         app:layout_constraintVertical_bias="1.0" />
 
     <Button
@@ -88,30 +81,31 @@
         android:layout_width="54dp"
         android:layout_height="58dp"
         android:layout_marginEnd="16dp"
-        android:background="@color/login_forms_details_light"
         android:drawableLeft="@drawable/ic_baseline_login_24"
         app:layout_constraintBottom_toTopOf="@+id/addp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textView5"
         app:layout_constraintTop_toBottomOf="@+id/imageView9"
-        app:layout_constraintVertical_bias="0.286" />
+        app:layout_constraintVertical_bias="0.352" />
 
     <TextView
         android:id="@+id/textView5"
-        android:layout_width="243dp"
-        android:layout_height="42dp"
-        android:text="Create New Account -->"
+        android:layout_width="244dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="124dp"
+        android:text="Register New Account "
         android:textAlignment="center"
         android:textColor="@color/black"
-        android:textSize="15dp"
+        android:textSize="20dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/addp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/forward_btn"
-        app:layout_constraintHorizontal_bias="0.857"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView9"
-        app:layout_constraintVertical_bias="0.332" />
+        app:layout_constraintVertical_bias="0.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -102,7 +102,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
      private void userLogin () {
 
-            // null reference here
             String email = etEmail.getText().toString();
             String password = etPassword.getText().toString().trim();
 

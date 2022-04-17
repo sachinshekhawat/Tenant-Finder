@@ -16,7 +16,7 @@
             android:name=".MainActivity3"
             android:exported="false" />
         <activity
-            android:name=".property_details"
+            android:name=".PropertyActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity2"

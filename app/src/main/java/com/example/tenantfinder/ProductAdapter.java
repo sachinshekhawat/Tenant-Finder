@@ -52,13 +52,15 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         holder.textViewDesc.setText(product.getShortdesc());
         holder.textViewRating.setText(String.valueOf(product.getRating()));
         holder.textViewPrice.setText(String.valueOf(product.getPrice()));
-
+        
         Picasso.get()
                 .load(product.getCoverPhoto())
                 .placeholder(R.drawable.image_gallery)
                 .into(holder.coverPhoto);
+    }
 
-
+    private String getRating(Product product) {
+        return product.getRating();
     }
 
     @Override
@@ -75,8 +77,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         public ProductViewHolder(@NonNull View itemView) {
             super(itemView);
 
-
-            coverPhoto=itemView.findViewById(R.id.imageView);
+            coverPhoto = itemView.findViewById(R.id.imageView);
             textViewTitle = itemView.findViewById(R.id.textViewTitle);
             textViewDesc = itemView.findViewById(R.id.textViewShortDesc);
             textViewPrice = itemView.findViewById(R.id.textViewPrice);

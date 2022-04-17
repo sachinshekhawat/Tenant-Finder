@@ -1,16 +1,12 @@
 package com.example.tenantfinder;
 
-import static java.security.AccessController.getContext;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,45 +14,37 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Objects;
 
 
-public class property_details extends AppCompatActivity {
+public class PropertyActivity extends AppCompatActivity {
 
 
 
     EditText etpricep,etprop,etratep,etaddressp;
     Button submitp,previewp;
     ImageView imageviewp;
+
+
     DatabaseReference databaseUsers;
     ProgressBar progressBar;
     FirebaseAuth mAuth;
     FirebaseStorage storage;
     Uri uri;
-
-
-    FirebaseDatabase database;
 
 
 
@@ -77,9 +65,8 @@ public class property_details extends AppCompatActivity {
         databaseUsers=FirebaseDatabase.getInstance().getReference();
         mAuth = FirebaseAuth.getInstance();
         storage = FirebaseStorage.getInstance();
-        database= FirebaseDatabase.getInstance();
 
-        database.getReference().child("Property Available").child(Objects.requireNonNull(mAuth.getUid())).addListenerForSingleValueEvent(new ValueEventListener() {
+        databaseUsers.child("Property Available").child(Objects.requireNonNull(mAuth.getUid())).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
@@ -101,7 +88,7 @@ public class property_details extends AppCompatActivity {
         previewp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(property_details.this,MainActivity2.class));
+                startActivity(new Intent(PropertyActivity.this,MainActivity2.class));
                 finish();
             }
         });
@@ -127,7 +114,7 @@ public class property_details extends AppCompatActivity {
         findViewById(R.id.back_property).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(property_details.this,MainActivity3.class));
+                startActivity(new Intent(PropertyActivity.this,MainActivity3.class));
             }
         });
 
@@ -147,13 +134,8 @@ public class property_details extends AppCompatActivity {
             reference.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    Toast.makeText(property_details.this, "Image Saved Successfully", Toast.LENGTH_SHORT).show();
-                    reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                        @Override
-                        public void onSuccess(Uri uri) {
-                            database.getReference().child("Property Available").child(Objects.requireNonNull(mAuth.getUid())).child("coverPhoto").setValue(uri.toString());
-                        }
-                    });
+                    Toast.makeText(PropertyActivity.this, "Image Saved Successfully", Toast.LENGTH_SHORT).show();
+
                 }
             });
         }
@@ -188,20 +170,18 @@ public class property_details extends AppCompatActivity {
             return;}
 
 
-
-
-
-
         Product product=new Product(name,adrs,rating,price,uri.toString());
 
         databaseUsers.child("Property Available").child(id).setValue(product).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()){
-                    Toast.makeText(property_details.this, "successfully added", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PropertyActivity.this, "successfully added", Toast.LENGTH_SHORT).show();
                 }
             }
         });
+
+
 
 
     }
