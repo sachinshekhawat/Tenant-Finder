@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
-        //
+
         findViewById(R.id.textviewsignup).setOnClickListener(this);
         findViewById(R.id.btn_login).setOnClickListener(this);
 

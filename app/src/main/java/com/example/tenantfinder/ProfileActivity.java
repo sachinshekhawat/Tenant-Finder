@@ -46,7 +46,6 @@ public class ProfileActivity extends AppCompatActivity {
     String profileImageUrl;
 
     FirebaseAuth mAuth;
-    FirebaseStorage storage;
 
 
 
@@ -149,6 +148,8 @@ public class ProfileActivity extends AppCompatActivity {
     private void saveUserInformation() {
         String displayName = etdisplayName.getText().toString();
         String email = etemail.getText().toString();
+
+
 
         if(displayName.isEmpty()){
             etdisplayName.setError("Name required");

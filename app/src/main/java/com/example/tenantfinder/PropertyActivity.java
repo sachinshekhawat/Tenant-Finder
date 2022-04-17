@@ -130,7 +130,7 @@ public class PropertyActivity extends AppCompatActivity {
             imageviewp.setImageURI(uri);
 
             final StorageReference reference = storage.getReference().child("cover_photo")
-                    .child(Objects.requireNonNull(FirebaseAuth.getInstance().getUid()));
+                    .child(mAuth.getUid());
             reference.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
